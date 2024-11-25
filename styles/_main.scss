@@ -1,0 +1,158 @@
+@import "./variables";
+
+@import "./mixin";
+
+main {
+    display: flex;
+    flex-direction: column;
+    background-color: $grayColor;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    border-radius: 7px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    //? header
+    header {
+        display: flex;
+        background-color: $blackColor;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-radius: 10px;
+        gap: 20px;
+        form{
+            box-shadow: 0 0 10px rgb(255, 255,255,0.221);
+            width: 100%;
+            border-radius: 5px;
+            max-width: 350px;
+            display: flex;
+            @media (max-width:650px) {
+                max-width: none;
+            }
+            input{
+                background-color: transparent;
+                border: none;
+                outline: none;
+                padding: 15px;
+                color: $textColor;
+                width: 100%;
+                
+            }
+            button{
+                border: none;
+                background: none;
+                color: $textColor;
+                cursor: pointer;
+                margin-right: 10px;
+            }
+        }
+        nav{
+            display: flex;
+            gap: 15px;
+            @media (max-width:650px) {
+                display: none;
+            }
+            span{
+                font-size: 14px;
+                cursor: pointer;
+                white-space: nowrap;
+                &:hover{
+                    color: white;
+                }
+            }
+        }
+    }
+
+    //? songs
+
+    section{
+        h2{
+        @include sm{
+            font-size: 17px;
+        }
+        }
+        flex: 1;
+        margin-top: 20px;
+        //? şarkı cart listesi
+        .list{
+            position: relative;
+            margin-top: 20px;
+            height: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+            @include md{
+                grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+            }
+            gap: 20px;
+            
+        }
+    }
+}
+
+//? card
+.card{
+    background-color: #121212;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: fit-content;
+    &:hover .play{
+        bottom: 20px;
+        opacity: 1;
+    }
+
+
+    //? figure resim
+    figure{
+        position: relative;
+        img{
+            width: 100%;
+            border-radius: 10px;
+        }
+        .play{
+            background-color:$greenColor;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            position: absolute;
+            right: 10px;
+            bottom: -20px;
+            transition: all 0.3s;
+            font-size: 23px;
+            opacity: 0;
+            &:hover{
+                background: #0f6d32;
+                scale: 1.1;
+                rotate: 360deg;
+            }
+            i{
+                pointer-events: none;
+            }
+        }
+    }
+    .card-info{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+@keyframes turn{
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+.animate{
+    animation: turn 4s infinite linear;
+}
